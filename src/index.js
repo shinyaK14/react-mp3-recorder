@@ -30,7 +30,8 @@ export default class Recorder extends Component {
   }
 
   state = {
-    isRecording: false
+    isRecording: false,
+    mouseDown: false
   }
 
   _recorder = null
@@ -73,24 +74,34 @@ export default class Recorder extends Component {
   }
 
   _onMouseDown = () => {
-    const {
-      recorderParams
-    } = this.props
+    if(!this.state.mouseDown) {
+      this.setState({mouseDown: true})
+      const {
+        recorderParams
+      } = this.props
 
-    this._cleanup()
+      this._cleanup()
 
-    this._recorder = new vmsg.Recorder({
-      wasmURL,
-      shimURL,
-      ...recorderParams
-    })
-
-    this._recorder.init()
-      .then(() => {
-        this._recorder.startRecording()
-        this.setState({ isRecording: true })
+      this._recorder = new vmsg.Recorder({
+        wasmURL,
+        shimURL,
+        ...recorderParams
       })
-      .catch((err) => this.props.onRecordingError(err))
+
+      this._recorder.init()
+        .then(() => {
+          this._recorder.startRecording()
+          this.setState({ isRecording: true })
+        })
+        .catch((err) => this.props.onRecordingError(err))
+    } else {
+      this.setState({mouseDown: false})
+      if (this._recorder) {
+        this._recorder.stopRecording()
+          .then((blob) => this.props.onRecordingComplete(blob))
+          .catch((err) => this.props.onRecordingError(err))
+      }
+    }
   }
 
   _onMouseUp = () => {
