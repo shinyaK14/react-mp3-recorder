@@ -57,7 +57,6 @@ export default class Recorder extends Component {
         <div
           className={styles.button}
           onMouseDown={this._onMouseDown}
-          onMouseUp={this._onMouseUp}
         >
           <img src={micIcon} width={24} height={24} />
         </div>
