@@ -56,9 +56,6 @@ export default class Recorder extends Component {
           <img src={micIcon} width={24} height={24} className={styles.mic_icon}
         />
           </div>
-          <button onClick={e => this._cleanup()}>
-            clean up
-          </button>
       </div>
     )
   }
@@ -96,7 +93,10 @@ export default class Recorder extends Component {
       this.setState({mouseDown: false})
       if (this._recorder) {
         this._recorder.stopRecording()
-          .then((blob) => this.props.onRecordingComplete(blob))
+          .then((blob) => {
+            this.props.onRecordingComplete(blob)
+            this.setState({ isRecording: false })
+          })
           .catch((err) => this.props.onRecordingError(err))
       }
     }
