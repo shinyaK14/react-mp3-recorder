@@ -69,7 +69,7 @@ export default function Waveform({ url }) {
     <div>
       <div className="recorder_button recorder_play" onClick={handlePlayPause}>
         <img src={playIcon} width={24} height={24}
-        className='mic_icon' />
+        className='play_icon' />
 
         {/* <input */}
         {/*   type="range" */}
