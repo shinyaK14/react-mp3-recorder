@@ -8,7 +8,7 @@ import classNames from 'classnames'
 
 import vmsg from './vmsg'
 
-import micIcon from './mic-icon-white.svg'
+import micIcon from './mic.svg'
 import wasmURL from './vmsg.wasm'
 
 import styles from './styles.css'
