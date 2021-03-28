@@ -104,43 +104,4 @@ export default class Recorder extends Component {
     }
   }
 
-  _onMouseDown = () => {
-    if(!this.state.isRecording) {
-      const {
-        recorderParams
-      } = this.props
-
-      this._cleanup()
-
-      this._recorder = new vmsg.Recorder({
-        wasmURL,
-        shimURL,
-        ...recorderParams
-      })
-
-      this._recorder.init()
-        .then(() => {
-          this._recorder.startRecording()
-          this.setState({ isRecording: true })
-        })
-        .catch((err) => this.props.onRecordingError(err))
-    } else {
-      if (this._recorder) {
-        this._recorder.stopRecording()
-          .then((blob) => {
-            this.props.onRecordingComplete(blob)
-            this.setState({ isRecording: false })
-          })
-          .catch((err) => this.props.onRecordingError(err))
-      }
-    }
-  }
-
-  _onMouseUp = () => {
-    if (this._recorder) {
-      this._recorder.stopRecording()
-        .then((blob) => this.props.onRecordingComplete(blob))
-        .catch((err) => this.props.onRecordingError(err))
-    }
-  }
 }
