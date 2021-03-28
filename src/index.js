@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import vmsg from './vmsg'
-import micIcon from './mic.svg'
+import offMicIcon from './off_mic.svg'
+import onMicIcon from './on_mic.svg'
 import wasmURL from './vmsg.wasm'
-import styles from './styles.css'
 
 const shimURL = 'https://unpkg.com/wasm-polyfill.js@0.2.0/wasm-polyfill.js'
 
@@ -46,17 +46,17 @@ export default class Recorder extends Component {
 
       { this.state.isRecording
           ? (
-            <div className={styles.button}
+            <div className='recorder_button recorder_on'
             onMouseDown={this.stopRecording}>
-              <img src={micIcon} width={24} height={24}
-              className={styles.mic_icon} />
+              <img src={onMicIcon} width={24} height={24}
+              className='mic_icon' />
             </div>
           )
           : (
-            <div className={styles.button}
+            <div className='recorder_button recorder_off'
             onMouseDown={this.startRecording}>
-              <img src={micIcon} width={24} height={24}
-              className={styles.mic_icon} />
+              <img src={offMicIcon} width={24} height={24}
+              className='mic_icon' />
             </div>
           )
       }
