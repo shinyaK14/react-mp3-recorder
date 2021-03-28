@@ -23,8 +23,7 @@ export default class Recorder extends Component {
   }
 
   state = {
-    isRecording: false,
-    mouseDown: false
+    isRecording: false
   }
 
   _recorder = null
@@ -48,14 +47,22 @@ export default class Recorder extends Component {
         {...rest}
     >
 
-      {this.state.isRecording.toString()}
-        <div
-          className={styles.button}
-          onMouseDown={this._onMouseDown}
-        >
-          <img src={micIcon} width={24} height={24} className={styles.mic_icon}
-        />
-          </div>
+      { this.state.isRecording
+          ? (
+            <div className={styles.button}
+            onMouseDown={this.stopRecording}>
+              <img src={micIcon} width={24} height={24}
+              className={styles.mic_icon} />
+            </div>
+          )
+          : (
+            <div className={styles.button}
+            onMouseDown={this.startRecording}>
+              <img src={micIcon} width={24} height={24}
+              className={styles.mic_icon} />
+            </div>
+          )
+      }
       </div>
     )
   }
@@ -68,9 +75,40 @@ export default class Recorder extends Component {
     }
   }
 
+  startRecording = () => {
+    const {
+      recorderParams
+    } = this.props
+
+    this._cleanup()
+
+    this._recorder = new vmsg.Recorder({
+      wasmURL,
+      shimURL,
+      ...recorderParams
+    })
+
+    this._recorder.init()
+      .then(() => {
+        this._recorder.startRecording()
+        this.setState({ isRecording: true })
+      })
+      .catch((err) => this.props.onRecordingError(err))
+  }
+
+  stopRecording = () => {
+    if (this._recorder) {
+      this._recorder.stopRecording()
+        .then((blob) => {
+          this.props.onRecordingComplete(blob)
+          this.setState({ isRecording: false })
+        })
+        .catch((err) => this.props.onRecordingError(err))
+    }
+  }
+
   _onMouseDown = () => {
-    if(!this.state.mouseDown) {
-      this.setState({mouseDown: true})
+    if(!this.state.isRecording) {
       const {
         recorderParams
       } = this.props
@@ -90,7 +128,6 @@ export default class Recorder extends Component {
         })
         .catch((err) => this.props.onRecordingError(err))
     } else {
-      this.setState({mouseDown: false})
       if (this._recorder) {
         this._recorder.stopRecording()
           .then((blob) => {
