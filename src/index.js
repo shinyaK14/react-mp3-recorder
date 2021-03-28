@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import classNames from 'classnames'
 import vmsg from './vmsg'
 import offMicIcon from './off_mic.svg'
 import onMicIcon from './on_mic.svg'
@@ -9,13 +7,6 @@ import wasmURL from './vmsg.wasm'
 const shimURL = 'https://unpkg.com/wasm-polyfill.js@0.2.0/wasm-polyfill.js'
 
 export default class Recorder extends Component {
-  static propTypes = {
-    recorderParams: PropTypes.object,
-    onRecordingComplete: PropTypes.func,
-    onRecordingError: PropTypes.func,
-    className: PropTypes.string
-  }
-
   static defaultProps = {
     recorderParams: { },
     onRecordingComplete: () => { },
