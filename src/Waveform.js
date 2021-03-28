@@ -67,21 +67,20 @@ export default function Waveform({ url }) {
 
   return (
     <div>
-      <div className="controls">
-        <button onClick={handlePlayPause}>{!playing ? "Play" : "Pause"}</button>
-        <input
-          type="range"
-          id="volume"
-          name="volume"
-          // waveSurfer recognize value of `0` same as `1`
-          //  so we need to set some zero-ish value for silence
-          min="0.01"
-          max="1"
-          step=".025"
-          onChange={onVolumeChange}
-          defaultValue={volume}
-        />
-        <label htmlFor="volume">Volume</label>
+      <div className="recorder_button recorder_play" onClick={handlePlayPause}>
+        {/* <input */}
+        {/*   type="range" */}
+        {/*   id="volume" */}
+        {/*   name="volume" */}
+        {/*   // waveSurfer recognize value of `0` same as `1` */}
+        {/*   //  so we need to set some zero-ish value for silence */}
+        {/*   min="0.01" */}
+        {/*   max="1" */}
+        {/*   step=".025" */}
+        {/*   onChange={onVolumeChange} */}
+        {/*   defaultValue={volume} */}
+        {/* /> */}
+        {/* <label htmlFor="volume">Volume</label> */}
       </div>
       <div id="waveform" ref={waveformRef} />
     </div>
