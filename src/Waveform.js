@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-
+import playIcon from './play.svg'
 import WaveSurfer from "wavesurfer.js";
 
 const formWaveSurferOptions = ref => ({
@@ -68,6 +68,9 @@ export default function Waveform({ url }) {
   return (
     <div>
       <div className="recorder_button recorder_play" onClick={handlePlayPause}>
+        <img src={playIcon} width={24} height={24}
+        className='mic_icon' />
+
         {/* <input */}
         {/*   type="range" */}
         {/*   id="volume" */}
