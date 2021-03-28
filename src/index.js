@@ -49,7 +49,9 @@ export default class Recorder extends Component {
               className='mic_icon' />
             </div>
         }
-        <Waveform url={audioUrl} />
+            { audioUrl &&
+                <Waveform url={audioUrl} />
+            }
       </div>
     )
   }
