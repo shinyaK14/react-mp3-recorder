@@ -53,7 +53,9 @@ export default class Recorder extends Component {
       <div
         className={classNames(styles.container, className)}
         {...rest}
-      >
+    >
+
+      {this.state.isRecording}
         <div
           className={styles.button}
           onMouseDown={this._onMouseDown}
