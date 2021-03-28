@@ -3,6 +3,7 @@ import vmsg from './vmsg'
 import offMicIcon from './off_mic.svg'
 import onMicIcon from './on_mic.svg'
 import wasmURL from './vmsg.wasm'
+import Waveform from "./Waveform";
 
 const shimURL = 'https://unpkg.com/wasm-polyfill.js@0.2.0/wasm-polyfill.js'
 
@@ -28,8 +29,7 @@ export default class Recorder extends Component {
       recorderParams,
       onRecordingComplete,
       onRecordingError,
-      className,
-      ...rest
+      audioUrl
     } = this.props
 
     return (
@@ -49,6 +49,7 @@ export default class Recorder extends Component {
               className='mic_icon' />
             </div>
         }
+        <Waveform url={audioUrl} />
       </div>
     )
   }
