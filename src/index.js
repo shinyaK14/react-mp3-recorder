@@ -23,7 +23,7 @@ export default class Recorder extends Component {
   }
 
   state = {
-    isRecording: false
+    isRecording: 0
   }
 
   _recorder = null
@@ -44,22 +44,20 @@ export default class Recorder extends Component {
     return (
       <div className='recorder_container'>
 
-      { this.state.isRecording
-          ? (
-            <div className='recorder_button recorder_on'
-            onMouseDown={this.stopRecording}>
-              <img src={onMicIcon} width={24} height={24}
-              className='mic_icon' />
-            </div>
-          )
-          : (
+        { this.state.isRecording === 0 &&
             <div className='recorder_button recorder_off'
             onMouseDown={this.startRecording}>
               <img src={offMicIcon} width={24} height={24}
               className='mic_icon' />
             </div>
-          )
-      }
+        }
+        { this.state.isRecording === 1 &&
+            <div className='recorder_button recorder_on'
+            onMouseDown={this.stopRecording}>
+              <img src={onMicIcon} width={24} height={24}
+              className='mic_icon' />
+            </div>
+        }
       </div>
     )
   }
@@ -88,7 +86,7 @@ export default class Recorder extends Component {
     this._recorder.init()
       .then(() => {
         this._recorder.startRecording()
-        this.setState({ isRecording: true })
+        this.setState({ isRecording: 1 })
       })
       .catch((err) => this.props.onRecordingError(err))
   }
@@ -98,7 +96,7 @@ export default class Recorder extends Component {
       this._recorder.stopRecording()
         .then((blob) => {
           this.props.onRecordingComplete(blob)
-          this.setState({ isRecording: false })
+          this.setState({ isRecording: 2 })
         })
         .catch((err) => this.props.onRecordingError(err))
     }
