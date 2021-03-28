@@ -5,8 +5,8 @@ import WaveSurfer from "wavesurfer.js";
 const formWaveSurferOptions = ref => ({
   container: ref,
   waveColor: "#F0EBF4",
-  progressColor: "#E64398",
-  cursorColor: "#E64398",
+  progressColor: "#AF2796",
+  cursorColor: "#AF2796",
   barWidth: 3,
   barRadius: 3,
   responsive: true,
