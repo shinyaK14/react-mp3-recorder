@@ -1,16 +1,9 @@
-/**
- * @class Recorder
- */
-
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-
 import vmsg from './vmsg'
-
 import micIcon from './mic.svg'
 import wasmURL from './vmsg.wasm'
-
 import styles from './styles.css'
 
 const shimURL = 'https://unpkg.com/wasm-polyfill.js@0.2.0/wasm-polyfill.js'
@@ -62,7 +55,10 @@ export default class Recorder extends Component {
         >
           <img src={micIcon} width={24} height={24} className={styles.mic_icon}
         />
-        </div>
+          </div>
+          <button onClick={e => this._cleanup()}>
+            clean up
+          </button>
       </div>
     )
   }
