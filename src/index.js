@@ -42,10 +42,7 @@ export default class Recorder extends Component {
     } = this.props
 
     return (
-      <div
-        className={classNames(styles.container, className)}
-        {...rest}
-    >
+      <div className='recorder_container'>
 
       { this.state.isRecording
           ? (
