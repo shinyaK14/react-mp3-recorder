@@ -8,8 +8,8 @@
 .button {
   margin: 0 auto;
   border-radius: 50%;
-  width: 64px;
-  height: 64px;
+  width: 100px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,4 +33,9 @@
   transition: all 50ms ease;
   transform: scale(1.03);
   background: #e5432d;
+}
+
+.mic_icon {
+  width: 64px;
+  height: 64px;
 }
