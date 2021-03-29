@@ -45,15 +45,19 @@ export default function Waveform({ url, playPeriod, period }) {
       }
     });
 
-    wavesurfer.current.on("finish", function() {
-      console.log('aa', period)
-      playPeriod()
-    })
 
     // Removes events, elements and disconnects Web Audio nodes.
     // when component unmount
     return () => wavesurfer.current.destroy();
   }, [url]);
+
+  useEffect(() => {
+    wavesurfer.current.on("finish", function() {
+      console.log('aa', period)
+      playPeriod()
+    })
+  }, [period]);
+
 
   const handlePlayPause = () => {
     setPlay(!playing);
