@@ -17,7 +17,7 @@ const formWaveSurferOptions = ref => ({
   partialRender: true
 });
 
-export default function Waveform({ url }) {
+export default function Waveform({ url, period }) {
   const waveformRef = useRef(null);
   const wavesurfer = useRef(null);
   const [playing, setPlay] = useState(false);
@@ -44,6 +44,12 @@ export default function Waveform({ url }) {
         setVolume(volume);
       }
     });
+
+    wavesurfer.current.on("finish", function() {
+      if(period) {
+        period.play()
+      }
+    }
 
     // Removes events, elements and disconnects Web Audio nodes.
     // when component unmount
