@@ -4,6 +4,7 @@ import offMicIcon from './off_mic.svg'
 import onMicIcon from './on_mic.svg'
 import wasmURL from './vmsg.wasm'
 import Waveform from "./Waveform";
+import StopWatch from "./StopWatch";
 
 const shimURL = 'https://unpkg.com/wasm-polyfill.js@0.2.0/wasm-polyfill.js'
 
@@ -50,6 +51,9 @@ export default class Recorder extends Component {
               className='mic_icon' />
             </div>
         }
+
+            <StopWatch isRecording={this.state.isRecording} />
+
             { audioUrl &&
                 <Waveform url={audioUrl} period={period}/>
             }
