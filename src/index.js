@@ -51,12 +51,11 @@ export default class Recorder extends Component {
               className='mic_icon' />
             </div>
         }
-
-            <StopWatch isRecording={this.state.isRecording} />
-
-            { audioUrl &&
-                <Waveform url={audioUrl} period={period}/>
-            }
+        { audioUrl &&
+            <Waveform url={audioUrl} period={period}/>
+        }
+            <StopWatch isRecording={this.state.isRecording}
+           stopRecording={stopRecording}/>
       </div>
     )
   }
