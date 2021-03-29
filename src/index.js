@@ -32,11 +32,13 @@ export const Recorder = props =>{
 
     cleanup()
 
-    recorder = new vmsg.Recorder({
+    setRecorder(
+      new vmsg.Recorder({
       wasmURL,
       shimURL,
       ...recorderParams
-    })
+      })
+    )
 
     recorder.init()
       .then(() => {
