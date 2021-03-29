@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const StopWatch = props => {
   const [timer, setTimer] = useState(0)
