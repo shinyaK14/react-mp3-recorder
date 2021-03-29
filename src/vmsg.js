@@ -544,7 +544,7 @@ export default { record, Recorder };
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-const delayTime = 0.100;
+const delayTime = 0.010;
 const fadeTime = 0.050;
 const bufferTime = 0.100;
 
