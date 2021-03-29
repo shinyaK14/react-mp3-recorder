@@ -21,7 +21,7 @@ export const Recorder = props =>{
     if (recorder) {
       recorder.stopRecording()
       recorder.close()
-      delete recorder
+      setRecorder(null)
     }
   }
 
