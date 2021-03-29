@@ -49,7 +49,7 @@ export default function Waveform({ url, period }) {
       if(period) {
         period.play()
       }
-    }
+    })
 
     // Removes events, elements and disconnects Web Audio nodes.
     // when component unmount
