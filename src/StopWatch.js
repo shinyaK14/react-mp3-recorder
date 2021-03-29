@@ -28,10 +28,12 @@ const StopWatch = props => {
     }, 1000)
 
     setTimeout(() => {
-      props.stopRecording()
-      // setTimer(30)
-      handlePause()
-    }, 30300);
+      if(!isPaused) {
+        props.stopRecording()
+        // setTimer(30)
+        handlePause()
+      }
+    }, 31000);
   }
 
   const handlePause = () => {
