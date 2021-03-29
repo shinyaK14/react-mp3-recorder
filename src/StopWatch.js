@@ -52,7 +52,7 @@ const StopWatch = props => {
   }
 
   return(
-    <div className='stop_watch'>00:{timer}</div>
+    <div className='stop_watch'>00:{format(timer)}</div>
   )
 
 }
