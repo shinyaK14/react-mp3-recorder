@@ -25,7 +25,7 @@ const StopWatch = props => {
     setIsPaused(true)
     countRef.current = setInterval(() => {
       setTimer((timer) => timer + 1)
-    }, 100)
+    }, 1000)
   }
 
   const handlePause = () => {
@@ -48,11 +48,11 @@ const StopWatch = props => {
   }
 
   const format = num => {
-    return ( '000' + num ).slice(0, 2) + ':' + ('00'+ num ).slice(-1) + '0'
+    return ( '00' + num ).slice(-2)
   }
 
   return(
-    <div className='stop_watch'>00:{format(timer)}</div>
+    <div className='stop_watch'>{format(timer)}</div>
   )
 
 }
