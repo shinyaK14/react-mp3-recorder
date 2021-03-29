@@ -30,8 +30,7 @@ export default class Recorder extends Component {
       recorderParams,
       onRecordingComplete,
       onRecordingError,
-      audioUrl,
-      playPeriod
+      audioUrl
     } = this.props
 
     return (
@@ -52,7 +51,8 @@ export default class Recorder extends Component {
             </div>
         }
         { audioUrl &&
-            <Waveform url={audioUrl} playPeriod={playPeriod}/>
+            <Waveform url={audioUrl} playPeriod={props.playPeriod}
+            period={props.period}/>
         }
             <StopWatch isRecording={this.state.isRecording}
            stopRecording={this.stopRecording}/>

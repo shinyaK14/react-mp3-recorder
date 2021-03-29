@@ -17,7 +17,7 @@ const formWaveSurferOptions = ref => ({
   partialRender: true
 });
 
-export default function Waveform({ url, playPeriod }) {
+export default function Waveform({ url, playPeriod, period }) {
   const waveformRef = useRef(null);
   const wavesurfer = useRef(null);
   const [playing, setPlay] = useState(false);
@@ -46,6 +46,7 @@ export default function Waveform({ url, playPeriod }) {
     });
 
     wavesurfer.current.on("finish", function() {
+      console.log('aa', period)
       playPeriod()
     })
 
