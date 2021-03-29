@@ -48,7 +48,7 @@ const StopWatch = props => {
   }
 
   const format = num => {
-    ( '000' + num ).slice( -3 )
+    return ( '000' + num ).slice( -3 )
   }
 
   return(
