@@ -51,11 +51,10 @@ export default class Recorder extends Component {
             </div>
         }
         { audioUrl &&
-            <Waveform url={audioUrl} playPeriod={this.props.playPeriod}
-            period={this.props.period}/>
+            <Waveform url={audioUrl} />
         }
-            <StopWatch isRecording={this.state.isRecording}
-           stopRecording={this.stopRecording}/>
+        <StopWatch isRecording={this.state.isRecording}
+       stopRecording={this.stopRecording}/>
       </div>
     )
   }

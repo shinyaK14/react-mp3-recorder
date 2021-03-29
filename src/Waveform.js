@@ -17,7 +17,7 @@ const formWaveSurferOptions = ref => ({
   partialRender: true
 });
 
-export default function Waveform({ url, playPeriod, period }) {
+export default function Waveform({ url }) {
   const waveformRef = useRef(null);
   const wavesurfer = useRef(null);
   const [playing, setPlay] = useState(false);
@@ -34,29 +34,21 @@ export default function Waveform({ url, playPeriod, period }) {
     wavesurfer.current.load(url);
 
     wavesurfer.current.on("ready", function() {
-      // https://wavesurfer-js.org/docs/methods.html
-      // wavesurfer.current.play();
-      // setPlay(true);
-
-      // make sure object stillavailable when file loaded
       if (wavesurfer.current) {
         wavesurfer.current.setVolume(volume);
         setVolume(volume);
       }
     });
 
-
-    // Removes events, elements and disconnects Web Audio nodes.
-    // when component unmount
     return () => wavesurfer.current.destroy();
   }, [url]);
 
-  useEffect(() => {
-    wavesurfer.current.on("finish", function() {
-      console.log('aa', period)
-      playPeriod()
-    })
-  }, [period]);
+  // useEffect(() => {
+  //   wavesurfer.current.on("finish", function() {
+  //     console.log('aa', period)
+  //     playPeriod()
+  //   })
+  // }, [period]);
 
 
   const handlePlayPause = () => {
