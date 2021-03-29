@@ -8,15 +8,15 @@ const StopWatch = props => {
 
   useEffect(() => {
     return () => {
-      handleReset
+      handleReset()
     };
   }, []);
 
   useEffect(() => {
     if(props.isRecording === 1) {
-      handleStart
+      handleStart()
     } else {
-      handlePause
+      handlePause()
     }
   }, [ props.isRecording ]);
 
