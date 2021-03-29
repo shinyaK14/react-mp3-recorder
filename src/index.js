@@ -54,7 +54,7 @@ export const Recorder = props =>{
           setRecording(2)
           cleanup()
         })
-        .catch((err) => .props.onRecordingError(err))
+        .catch((err) => props.onRecordingError(err))
     }
   }
 
