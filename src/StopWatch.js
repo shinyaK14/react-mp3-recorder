@@ -27,6 +27,7 @@ const StopWatch = props => {
       if(timer < 10) {
         setTimer((timer) => timer + 1)
       } else {
+        clearInterval(countRef.current)
         props.stopRecording()
         handlePause()
       }
