@@ -91,6 +91,7 @@ export default class Recorder extends Component {
         .then((blob) => {
           this.props.onRecordingComplete(blob)
           this.setState({ isRecording: 2 })
+          this._cleanup()
         })
         .catch((err) => this.props.onRecordingError(err))
     }
