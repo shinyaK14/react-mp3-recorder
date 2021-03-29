@@ -29,6 +29,7 @@ const StopWatch = props => {
 
     setTimeout(() => {
       handlePause()
+      props.stopRecording()
     }, 3000);
   }
 
