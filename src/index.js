@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react'
 import vmsg from './vmsg'
 import offMicIcon from './off_mic.svg'
 import onMicIcon from './on_mic.svg'
@@ -7,81 +7,95 @@ import Waveform from "./Waveform";
 
 const shimURL = 'https://unpkg.com/wasm-polyfill.js@0.2.0/wasm-polyfill.js'
 
-export const Recorder = props =>{
-  const [recording, setRecording] = useState(0);
-  const [recorder, setRecorder] = useState();
+export default class Recorder extends Component {
+  static defaultProps = {
+    recorderParams: { },
+    onRecordingComplete: () => { },
+    onRecordingError: () => { }
+  }
 
-  useEffect(() => {
-    return () => {
-      cleanup()
-    };
-  }, []);
+  state = {
+    isRecording: 0
+  }
 
-  const cleanup = () =>{
-    if (recorder) {
-      recorder.stopRecording()
-      recorder.close()
-      setRecorder(null)
+  _recorder = null
+
+  componentWillUnmount() {
+    this._cleanup()
+  }
+
+  render() {
+    const {
+      recorderParams,
+      onRecordingComplete,
+      onRecordingError,
+      audioUrl,
+      period
+    } = this.props
+
+    return (
+      <div className='recorder_container'>
+
+        { this.state.isRecording === 0 &&
+            <div className='recorder_button recorder_off'
+            onMouseDown={this.startRecording}>
+              <img src={offMicIcon} width={24} height={24}
+              className='mic_icon' />
+            </div>
+        }
+        { this.state.isRecording === 1 &&
+            <div className='recorder_button recorder_on'
+            onMouseDown={this.stopRecording}>
+              <img src={onMicIcon} width={24} height={24}
+              className='mic_icon' />
+            </div>
+        }
+            { audioUrl &&
+                <Waveform url={audioUrl} period={period}/>
+            }
+      </div>
+    )
+  }
+
+  _cleanup() {
+    if (this._recorder) {
+      this._recorder.stopRecording()
+      this._recorder.close()
+      delete this._recorder
     }
   }
 
-  const startRecording = () => {
+  startRecording = () => {
     const {
       recorderParams
-    } = props
+    } = this.props
 
-    cleanup()
+    this._cleanup()
 
-    setRecorder(
-      new vmsg.Recorder({
+    this._recorder = new vmsg.Recorder({
       wasmURL,
       shimURL,
       ...recorderParams
-      })
-    )
+    })
 
-    recorder.init()
+    this._recorder.init()
       .then(() => {
-        recorder.startRecording()
-        setRecording(1)
+        this._recorder.startRecording()
+        this.setState({ isRecording: 1 })
       })
-      .catch((err) => props.onRecordingError(err))
+      .catch((err) => this.props.onRecordingError(err))
   }
 
-  const stopRecording = () => {
-    if (recorder) {
-      recorder.stopRecording()
+  stopRecording = () => {
+    if (this._recorder) {
+      this._recorder.stopRecording()
         .then((blob) => {
-          props.onRecordingComplete(blob)
-          setRecording(2)
-          cleanup()
+          this.props.onRecordingComplete(blob)
+          this.setState({ isRecording: 2 })
+          this._cleanup()
         })
-        .catch((err) => props.onRecordingError(err))
+        .catch((err) => this.props.onRecordingError(err))
     }
   }
 
-  return (
-    <div className='recorder_container'>
-
-      { recording === 0 &&
-          <div className='recorder_button recorder_off'
-          onMouseDown={startRecording}>
-            <img src={offMicIcon} width={24} height={24}
-            className='mic_icon' />
-          </div>
-      }
-      { recording === 1 &&
-          <div className='recorder_button recorder_on'
-          onMouseDown={stopRecording}>
-            <img src={onMicIcon} width={24} height={24}
-            className='mic_icon' />
-          </div>
-      }
-          { props.audioUrl &&
-              <Waveform url={props.audioUrl} period={props.period}/>
-          }
-    </div>
-  )
 }
-
-export default Recorder
