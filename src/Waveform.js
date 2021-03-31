@@ -4,7 +4,7 @@ import WaveSurfer from "wavesurfer.js";
 
 const formWaveSurferOptions = ref => ({
   container: ref,
-  waveColor: "#F0EBF4",
+  waveColor: "#656565",
   progressColor: "#AF2796",
   cursorColor: "#AF2796",
   barWidth: 3,
