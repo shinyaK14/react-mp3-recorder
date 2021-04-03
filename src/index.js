@@ -16,7 +16,7 @@ export default class Recorder extends Component {
   }
 
   state = {
-    isRecording: 0
+    isRecording: 0, second: 44
   }
 
   _recorder = null
@@ -69,6 +69,10 @@ export default class Recorder extends Component {
     }
   }
 
+  _setSecond = (second) =>{
+    setState({ second: second })
+  }
+
   startRecording = () => {
     const {
       recorderParams
@@ -95,6 +99,7 @@ export default class Recorder extends Component {
       this._recorder.stopRecording()
         .then((blob) => {
           this.props.onRecordingComplete(blob)
+          this.props.setSecond(this.state.second)
           this.setState({ isRecording: 2 })
           this._cleanup()
         })
