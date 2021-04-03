@@ -43,14 +43,6 @@ export default function Waveform({ url }) {
     return () => wavesurfer.current.destroy();
   }, [url]);
 
-  // useEffect(() => {
-  //   wavesurfer.current.on("finish", function() {
-  //     console.log('aa', period)
-  //     playPeriod()
-  //   })
-  // }, [period]);
-
-
   const handlePlayPause = () => {
     setPlay(!playing);
     wavesurfer.current.playPause();

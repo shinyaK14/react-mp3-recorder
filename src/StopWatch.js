@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 
 const StopWatch = props => {
   const [timer, setTimer] = useState(0)
-  const [timer2, setTimer2] = useState(0)
   const [isActive, setIsActive] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const countRef = useRef(null)
@@ -17,14 +16,14 @@ const StopWatch = props => {
     if(props.isRecording === 1) {
       handleStart()
     } else {
+      props.secondRef.current = timer
       handlePause()
     }
   }, [ props.isRecording ]);
 
-  useEffect(() => {
-    console.log('update', timer)
-    props.secondRef.current = timer
-  }, [ timer ]);
+  // useEffect(() => {
+      // props.secondRef.current = timer
+  // }, [ timer ]);
 
   const handleStart = () => {
     setIsActive(true)
@@ -44,12 +43,9 @@ const StopWatch = props => {
   const handlePause = () => {
     clearInterval(countRef.current)
     setIsPaused(false)
-    console.log('ttt', timer2)
-    // props.setSecond(timer2)
   }
 
   const handleReset = () => {
-    console.log('rrr', timer)
     clearInterval(countRef.current)
     setIsActive(false)
     setIsPaused(false)

@@ -76,11 +76,6 @@ export default class Recorder extends Component {
     }
   }
 
-  // _setSecond = (second) =>{
-  //   console.log('ind', second)
-  //   this.setState({ second: second })
-  // }
-
   startRecording = () => {
     const {
       recorderParams
