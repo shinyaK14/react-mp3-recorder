@@ -22,6 +22,7 @@ const StopWatch = props => {
   }, [ props.isRecording ]);
 
   useEffect(() => {
+    console.log('update', timer)
     setTimer2(timer)
   }, [ timer ]);
 
