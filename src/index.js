@@ -12,7 +12,8 @@ export default class Recorder extends Component {
   static defaultProps = {
     recorderParams: { },
     onRecordingComplete: () => { },
-    onRecordingError: () => { }
+    onRecordingError: () => { },
+    setSecond: () => { }
   }
 
   state = {
@@ -69,9 +70,9 @@ export default class Recorder extends Component {
     }
   }
 
-  _setSecond = (second) =>{
-    setState({ second: second })
-  }
+  // _setSecond = (second) =>{
+  //   setState({ second: second })
+  // }
 
   startRecording = () => {
     const {
