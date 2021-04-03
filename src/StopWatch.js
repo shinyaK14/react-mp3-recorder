@@ -16,14 +16,13 @@ const StopWatch = props => {
     if(props.isRecording === 1) {
       handleStart()
     } else {
-      props.secondRef.current = timer
       handlePause()
     }
   }, [ props.isRecording ]);
 
-  // useEffect(() => {
-      // props.secondRef.current = timer
-  // }, [ timer ]);
+  useEffect(() => {
+    props.secondRef.current = timer
+  }, [ timer ]);
 
   const handleStart = () => {
     setIsActive(true)
