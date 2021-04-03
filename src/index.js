@@ -16,8 +16,13 @@ export default class Recorder extends Component {
     setSecond: () => { }
   }
 
+  constructor(props) {
+    super(props);
+    this.secondRef = React.createRef();
+  }
+
   state = {
-    isRecording: 0, second: 44
+    isRecording: 0
   }
 
   _recorder = null
@@ -57,7 +62,7 @@ export default class Recorder extends Component {
         { this.state.isRecording !== 2 &&
             <StopWatch isRecording={this.state.isRecording}
             stopRecording={this.stopRecording}
-            setSecond={this._setSecond} />
+            secondRef={this.secondRef} />
         }
       </div>
     )
@@ -71,10 +76,10 @@ export default class Recorder extends Component {
     }
   }
 
-  _setSecond = (second) =>{
-    console.log('ind', second)
-    this.setState({ second: second })
-  }
+  // _setSecond = (second) =>{
+  //   console.log('ind', second)
+  //   this.setState({ second: second })
+  // }
 
   startRecording = () => {
     const {
@@ -102,7 +107,7 @@ export default class Recorder extends Component {
       this._recorder.stopRecording()
         .then((blob) => {
           this.props.onRecordingComplete(blob)
-          this.props.setSecond(this.state.second)
+          this.props.setSecond(this.secondRef.current)
           this.setState({ isRecording: 2 })
           this._cleanup()
         })

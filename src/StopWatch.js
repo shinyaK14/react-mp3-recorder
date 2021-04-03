@@ -23,7 +23,7 @@ const StopWatch = props => {
 
   useEffect(() => {
     console.log('update', timer)
-    setTimer2(timer)
+    props.secondRef.current = timer
   }, [ timer ]);
 
   const handleStart = () => {
@@ -45,7 +45,7 @@ const StopWatch = props => {
     clearInterval(countRef.current)
     setIsPaused(false)
     console.log('ttt', timer2)
-    props.setSecond(timer2)
+    // props.setSecond(timer2)
   }
 
   const handleReset = () => {
