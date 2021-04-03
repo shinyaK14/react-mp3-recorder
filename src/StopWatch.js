@@ -39,7 +39,6 @@ const StopWatch = props => {
     clearInterval(countRef.current)
     setIsPaused(false)
     console.log('ttt', timer)
-    console.log('tttRR', countRef.current.timer)
     props.setSecond(timer)
   }
 
