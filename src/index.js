@@ -72,7 +72,7 @@ export default class Recorder extends Component {
   }
 
   _setSecond = (second) =>{
-    setState({ second: second })
+    this.setState({ second: second })
   }
 
   startRecording = () => {
