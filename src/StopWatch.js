@@ -53,7 +53,12 @@ const StopWatch = props => {
   }
 
   return(
-    <div className='stop_watch'>{format(timer)}</div>
+    <div>
+      <div className='stop_watch'>{format(timer)}</div>
+      <div className='error'>
+        * 最大３０秒まで
+      </div>
+    </div>
   )
 
 }
