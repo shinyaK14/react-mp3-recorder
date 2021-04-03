@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 const StopWatch = props => {
   const [timer, setTimer] = useState(0)
+  const [number, setNum] = useState(0)
   const [isActive, setIsActive] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const countRef = useRef(null)
@@ -39,6 +40,7 @@ const StopWatch = props => {
     clearInterval(countRef.current)
     setIsPaused(false)
     console.log('ttt', timer)
+    console.log('nnn', number)
     props.setSecond(timer)
   }
 
@@ -51,6 +53,7 @@ const StopWatch = props => {
   }
 
   const format = num => {
+    setNum(num)
     return ( '00' + num ).slice(-2)
   }
 
