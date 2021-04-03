@@ -56,7 +56,8 @@ export default class Recorder extends Component {
         }
         { this.state.isRecording !== 2 &&
             <StopWatch isRecording={this.state.isRecording}
-            stopRecording={this.stopRecording}/>
+            stopRecording={this.stopRecording}
+            setSecond={this._setSecond} />
         }
       </div>
     )
@@ -70,9 +71,9 @@ export default class Recorder extends Component {
     }
   }
 
-  // _setSecond = (second) =>{
-  //   setState({ second: second })
-  // }
+  _setSecond = (second) =>{
+    setState({ second: second })
+  }
 
   startRecording = () => {
     const {
