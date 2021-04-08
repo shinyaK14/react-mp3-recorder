@@ -39,11 +39,14 @@ export default class Recorder extends Component {
       audioUrl
     } = this.props
 
-    console.log('rrrr', this.state.isRecording)
+    if(audioUrl) {
+      return(
+        <Waveform url={audioUrl} />
+      )
+    }
 
     return (
       <div className='recorder_container'>
-
         { this.state.isRecording === 0 &&
             <div className='recorder_button recorder_off'
             onMouseDown={this.startRecording}>
@@ -57,9 +60,6 @@ export default class Recorder extends Component {
               <img src={onMicIcon} width={24} height={24}
               className='mic_icon' />
             </div>
-        }
-        { audioUrl &&
-            <Waveform url={audioUrl} />
         }
         { this.state.isRecording !== 2 &&
             <StopWatch isRecording={this.state.isRecording}
@@ -105,8 +105,8 @@ export default class Recorder extends Component {
         .then((blob) => {
           this.props.onRecordingComplete(blob)
           this.props.setSecond(this.secondRef.current)
-          console.log('22222')
-          this.setState({ isRecording: 2 })
+          // console.log('22222')
+          // this.setState({ isRecording: 2 })
           this._cleanup()
         })
         .catch((err) => this.props.onRecordingError(err))
