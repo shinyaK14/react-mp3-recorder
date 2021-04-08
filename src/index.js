@@ -108,13 +108,14 @@ export default class Recorder extends Component {
   }
 
   stopRecording = () => {
+    this.setState({ isRecording: 2 })
     if (this._recorder) {
       this._recorder.stopRecording()
         .then((blob) => {
           this.props.onRecordingComplete(blob)
           this.props.setSecond(this.secondRef.current)
           console.log('22222')
-          this.setState({ isRecording: 2 })
+          // this.setState({ isRecording: 2 })
           this._cleanup()
         })
         .catch((err) => this.props.onRecordingError(err))
