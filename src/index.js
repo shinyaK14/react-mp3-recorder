@@ -39,6 +39,16 @@ export default class Recorder extends Component {
       audioUrl
     } = this.props
 
+    if(this.state.isRecording === 2) {
+      return(
+      <div className='recorder_container'>
+        { audioUrl &&
+            <Waveform url={audioUrl} />
+        }
+      </div>
+      )
+    }
+
     return (
       <div className='recorder_container'>
 
@@ -92,7 +102,6 @@ export default class Recorder extends Component {
     this._recorder.init()
       .then(() => {
         this._recorder.startRecording()
-        console.log('jijiji')
         this.setState({ isRecording: 1 })
       })
       .catch((err) => this.props.onRecordingError(err))
@@ -104,6 +113,7 @@ export default class Recorder extends Component {
         .then((blob) => {
           this.props.onRecordingComplete(blob)
           this.props.setSecond(this.secondRef.current)
+          console.log('22222')
           this.setState({ isRecording: 2 })
           this._cleanup()
         })
