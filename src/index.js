@@ -92,6 +92,7 @@ export default class Recorder extends Component {
     this._recorder.init()
       .then(() => {
         this._recorder.startRecording()
+        console.log('jijiji')
         this.setState({ isRecording: 1 })
       })
       .catch((err) => this.props.onRecordingError(err))
