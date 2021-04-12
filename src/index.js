@@ -48,20 +48,27 @@ export default class Recorder extends Component {
     return (
       <div className='recorder_container'>
         { this.state.isRecording === 0 &&
-            <div className='recorder_button recorder_off'
-            onMouseDown={this.startRecording}>
+            <div>
+              <div className='recorder_button recorder_off'
+              onMouseDown={this.startRecording}>
               <img src={offMicIcon} width={24} height={24}
               className='mic_icon' />
+              </div>
+              <div className='recording_inst'>
+                 
+              </div>
             </div>
         }
         { this.state.isRecording === 1 &&
             <div>
               <div className='recorder_button recorder_on'
-              onMouseDown={this.stopRecording}>
-              <img src={onMicIcon} width={24} height={24}
-              className='mic_icon' />
+                onMouseDown={this.stopRecording}>
+                <img src={onMicIcon} width={24} height={24}
+                className='mic_icon' />
               </div>
-              再クリックで録音停止
+              <div className='recording_inst'>
+                再クリックで録音停止
+              </div>
             </div>
         }
         { this.state.isRecording !== 2 &&
