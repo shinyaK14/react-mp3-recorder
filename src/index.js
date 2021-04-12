@@ -55,14 +55,14 @@ export default class Recorder extends Component {
             </div>
         }
         { this.state.isRecording === 1 &&
-            <>
-            <div className='recorder_button recorder_on'
-            onMouseDown={this.stopRecording}>
+            <div>
+              <div className='recorder_button recorder_on'
+              onMouseDown={this.stopRecording}>
               <img src={onMicIcon} width={24} height={24}
               className='mic_icon' />
-            </div>
+              </div>
               再クリックで録音停止
-            </>
+            </div>
         }
         { this.state.isRecording !== 2 &&
             <StopWatch isRecording={this.state.isRecording}
