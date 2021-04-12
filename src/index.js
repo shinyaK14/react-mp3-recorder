@@ -59,6 +59,7 @@ export default class Recorder extends Component {
             onMouseDown={this.stopRecording}>
               <img src={onMicIcon} width={24} height={24}
               className='mic_icon' />
+              再クリックで録音停止
             </div>
         }
         { this.state.isRecording !== 2 &&
